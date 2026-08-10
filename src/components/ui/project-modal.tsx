@@ -46,6 +46,18 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
   const whatIBuilt = pickList(project.whatIBuilt, locale);
   const keyFeatures = pickList(project.keyFeatures, locale);
   const statusLabel = pick(project.statusLabel, locale);
+  const isBg = locale === "bg";
+  /** Cyrillic case-study body needs looser metrics than English text-sm. */
+  const bodyProseClass = isBg
+    ? "text-sm leading-7 tracking-normal [word-spacing:0.06em] text-muted"
+    : "text-sm leading-relaxed text-muted";
+  const compactProseClass = isBg
+    ? "text-sm leading-7 tracking-normal [word-spacing:0.06em] text-muted"
+    : "text-sm text-muted";
+  const listItemClass = isBg
+    ? "flex gap-2.5 text-sm leading-7 tracking-normal [word-spacing:0.06em] text-muted"
+    : "flex gap-2 text-sm text-muted";
+  const listGapClass = isBg ? "mt-3 space-y-3" : "mt-3 space-y-2";
 
   return (
     <div
@@ -92,7 +104,7 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
             >
               {project.title}
             </h3>
-            <p className="mt-1.5 text-sm text-muted">{description}</p>
+            <p className={cn("mt-1.5", compactProseClass)}>{description}</p>
           </div>
           <button
             ref={closeRef}
@@ -109,7 +121,7 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
           <ProjectModalMedia key={project.id} project={project} />
 
           <div className="space-y-7 px-5 py-6 sm:px-6">
-            <DetailBlock title={dictionary.projects.overview}>
+            <DetailBlock title={dictionary.projects.overview} proseClass={bodyProseClass}>
               {overview}
             </DetailBlock>
 
@@ -117,6 +129,9 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
               <ListBlock
                 title={dictionary.projects.whatIBuilt}
                 items={whatIBuilt}
+                listGapClass={listGapClass}
+                listItemClass={listItemClass}
+                isBg={isBg}
               />
             ) : null}
 
@@ -124,6 +139,9 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
               <ListBlock
                 title={dictionary.projects.keyFeatures}
                 items={keyFeatures}
+                listGapClass={listGapClass}
+                listItemClass={listItemClass}
+                isBg={isBg}
               />
             ) : null}
 
@@ -149,7 +167,7 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
               <h4 className="text-sm font-semibold text-foreground">
                 {dictionary.projects.projectStatus}
               </h4>
-              <p className="mt-2 text-sm text-muted">{statusLabel}</p>
+              <p className={cn("mt-2", compactProseClass)}>{statusLabel}</p>
             </div>
 
             <div className="border-t border-border pt-5">
@@ -220,23 +238,48 @@ function ProjectModalMedia({ project }: { project: Project }) {
   );
 }
 
-function DetailBlock({ title, children }: { title: string; children: string }) {
+function DetailBlock({
+  title,
+  children,
+  proseClass,
+}: {
+  title: string;
+  children: string;
+  proseClass: string;
+}) {
   return (
     <div>
       <h4 className="text-sm font-semibold text-foreground">{title}</h4>
-      <p className="mt-2 text-sm leading-relaxed text-muted">{children}</p>
+      <p className={cn("mt-2", proseClass)}>{children}</p>
     </div>
   );
 }
 
-function ListBlock({ title, items }: { title: string; items: string[] }) {
+function ListBlock({
+  title,
+  items,
+  listGapClass,
+  listItemClass,
+  isBg,
+}: {
+  title: string;
+  items: string[];
+  listGapClass: string;
+  listItemClass: string;
+  isBg: boolean;
+}) {
   return (
     <div>
       <h4 className="text-sm font-semibold text-foreground">{title}</h4>
-      <ul className="mt-3 space-y-2">
+      <ul className={listGapClass}>
         {items.map((item) => (
-          <li key={item} className="flex gap-2 text-sm text-muted">
-            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
+          <li key={item} className={listItemClass}>
+            <span
+              className={cn(
+                "h-1 w-1 shrink-0 rounded-full bg-accent/70",
+                isBg ? "mt-2.5" : "mt-2",
+              )}
+            />
             <span>{item}</span>
           </li>
         ))}
