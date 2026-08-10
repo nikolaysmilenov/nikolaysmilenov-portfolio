@@ -1,16 +1,10 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useSyncExternalStore } from "react";
 import { usePathLocale } from "@/components/i18n/use-path-locale";
 import { cn } from "@/lib/utils";
-
-const modeIcons = {
-  dark: Moon,
-  light: Sun,
-  system: Monitor,
-} as const;
 
 function subscribe() {
   return () => {};
@@ -25,7 +19,7 @@ function getServerSnapshot() {
 }
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const { dictionary } = usePathLocale();
   const mounted = useSyncExternalStore(
     subscribe,
@@ -36,21 +30,13 @@ export function ThemeToggle({ className }: { className?: string }) {
   const modes = [
     {
       value: "dark" as const,
-      label: dictionary.theme.dark,
       aria: dictionary.theme.darkTheme,
-      icon: modeIcons.dark,
+      icon: Moon,
     },
     {
       value: "light" as const,
-      label: dictionary.theme.light,
       aria: dictionary.theme.lightTheme,
-      icon: modeIcons.light,
-    },
-    {
-      value: "system" as const,
-      label: dictionary.theme.system,
-      aria: dictionary.theme.systemTheme,
-      icon: modeIcons.system,
+      icon: Sun,
     },
   ];
 
@@ -58,13 +44,16 @@ export function ThemeToggle({ className }: { className?: string }) {
     return (
       <div
         className={cn(
-          "h-9 w-[108px] rounded-xl border border-border bg-surface-elevated/60",
+          "h-9 w-[68px] rounded-xl border border-border bg-surface-elevated/60",
           className,
         )}
         aria-hidden
       />
     );
   }
+
+  const activeMode =
+    theme === "light" || theme === "dark" ? theme : resolvedTheme;
 
   return (
     <div
@@ -76,7 +65,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       )}
     >
       {modes.map(({ value, aria, icon: Icon }) => {
-        const active = theme === value;
+        const active = activeMode === value;
         return (
           <button
             key={value}

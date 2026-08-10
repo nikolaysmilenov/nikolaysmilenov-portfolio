@@ -9,6 +9,7 @@ import { usePathLocale } from "@/components/i18n/use-path-locale";
 import { navLinks, type NavLinkId } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { social } from "@/data/social";
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
@@ -87,12 +88,14 @@ export function Navbar() {
       >
         <Link
           href="#home"
-          className="group flex min-w-0 items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="group flex min-w-0 items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           onClick={closeMenu}
+          aria-label={siteConfig.name}
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-elevated font-display text-sm font-semibold tracking-tight text-accent transition-colors group-hover:border-accent/40">
-            {siteConfig.shortName}
-          </span>
+          <BrandLogo
+            title={`${siteConfig.name} logo`}
+            className="transition-transform duration-300 group-hover:scale-[1.03]"
+          />
           <span className="hidden truncate font-display text-sm font-semibold tracking-tight text-foreground sm:inline">
             {siteConfig.name}
           </span>
@@ -107,7 +110,7 @@ export function Navbar() {
                   href={link.href}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "rounded-lg px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                    "rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                     isActive
                       ? "bg-accent/10 text-foreground"
                       : "text-muted hover:text-foreground",
@@ -183,7 +186,7 @@ export function Navbar() {
                     onClick={closeMenu}
                     aria-current={isActive ? "true" : undefined}
                     className={cn(
-                      "rounded-xl px-3 py-3 text-base transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                      "rounded-xl px-3 py-3 text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                       isActive
                         ? "bg-accent/10 text-foreground"
                         : "text-foreground hover:bg-surface-elevated",

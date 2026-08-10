@@ -28,18 +28,18 @@ const body = Plus_Jakarta_Sans({
 });
 
 /**
- * Cyrillic companion for Bulgarian text.
- * Loaded with Cyrillic subsets only so Latin glyphs keep using Outfit / Plus Jakarta Sans.
+ * Cyrillic-capable brand font for Bulgarian UI.
+ * Includes Latin so mixed EN/BG strings stay visually consistent on /bg.
  */
 const cyrillic = Manrope({
   variable: "--font-cyrillic",
-  subsets: ["cyrillic", "cyrillic-ext"],
+  subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
   display: "swap",
 });
 
 const mono = JetBrains_Mono({
   variable: "--font-mono",
-  subsets: ["latin", "cyrillic", "cyrillic-ext"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 

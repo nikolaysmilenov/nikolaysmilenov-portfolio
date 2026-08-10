@@ -95,7 +95,56 @@ body {
 }
 
 .font-mono {
-  font-family: var(--font-mono), var(--font-cyrillic), ui-monospace, monospace;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/**
+ * Bulgarian locale: Manrope becomes the primary UI/display face so Cyrillic
+ * never falls back to thin/system glyphs. English route keeps Outfit/Jakarta.
+ */
+html[lang="bg"] body {
+  font-family: var(--font-cyrillic), system-ui, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang="bg"] .font-display {
+  font-family: var(--font-cyrillic), system-ui, sans-serif;
+}
+
+/* Keep numeric section labels readable without JetBrains Mono Cyrillic */
+html[lang="bg"] .font-mono {
+  font-family: var(--font-cyrillic), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+html[lang="bg"] nav a,
+html[lang="bg"] nav button {
+  font-weight: 500;
+}
+
+html[lang="bg"] p,
+html[lang="bg"] li,
+html[lang="bg"] label,
+html[lang="bg"] dd,
+html[lang="bg"] dt,
+html[lang="bg"] input,
+html[lang="bg"] textarea {
+  font-weight: 500;
+}
+
+html[lang="bg"] .font-display.font-semibold,
+html[lang="bg"] h1,
+html[lang="bg"] h2,
+html[lang="bg"] h3 {
+  font-weight: 700;
+}
+
+html[lang="bg"] .text-muted,
+html[lang="bg"] .text-muted-foreground {
+  font-weight: 500;
 }
 
 .section-pad {
