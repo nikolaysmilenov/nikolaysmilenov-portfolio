@@ -92,10 +92,7 @@ export function Navbar() {
           onClick={closeMenu}
           aria-label={siteConfig.name}
         >
-          <BrandLogo
-            title={`${siteConfig.name} logo`}
-            className="transition-transform duration-300 group-hover:scale-[1.03]"
-          />
+          <BrandLogo title={`${siteConfig.name} logo`} />
           <span className="hidden truncate font-display text-sm font-semibold tracking-tight text-foreground sm:inline">
             {siteConfig.name}
           </span>
