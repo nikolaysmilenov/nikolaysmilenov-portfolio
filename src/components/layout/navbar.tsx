@@ -93,6 +93,10 @@ export function Navbar() {
           aria-label={siteConfig.name}
         >
           <BrandLogo title={`${siteConfig.name} logo`} />
+          <span
+            className="hidden h-5 w-px shrink-0 bg-border sm:block"
+            aria-hidden
+          />
           <span className="hidden truncate font-display text-sm font-semibold tracking-tight text-foreground sm:inline">
             {siteConfig.name}
           </span>

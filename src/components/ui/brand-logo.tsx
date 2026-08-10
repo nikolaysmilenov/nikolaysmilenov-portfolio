@@ -1,3 +1,6 @@
+"use client";
+
+import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
@@ -6,54 +9,67 @@ type BrandLogoProps = {
 };
 
 /**
- * Geometric NS monogram for Nikolay Smilenov.
- *
- * Construction: N (left upright + diagonal + shared upright) with an S
- * whose bowls are anchored to that shared upright — one intentional mark,
- * not lettering inside a tile.
+ * NS monogram — inline SVG recreation of the approved brand mark.
+ * Sharp geometric N interlocking with flowing S; blue → violet gradient.
  */
 export function BrandLogo({
   className,
   title = "Nikolay Smilenov",
 }: BrandLogoProps) {
-  const titleId = "ns-brand-logo-title";
+  const reactId = useId();
+  const titleId = `${reactId}-title`;
+  const gradId = `${reactId}-grad`;
 
   return (
     <span
       className={cn(
-        "relative inline-flex h-9 w-9 shrink-0 items-center justify-center text-foreground sm:h-10 sm:w-10",
+        "relative inline-flex h-9 w-10 shrink-0 items-center sm:h-10 sm:w-11",
         className,
       )}
     >
       <svg
-        viewBox="0 0 40 40"
+        viewBox="0 0 72 60"
         role="img"
         aria-labelledby={titleId}
         className="h-full w-full"
         fill="none"
       >
         <title id={titleId}>{title}</title>
+        <defs>
+          <linearGradient
+            id={gradId}
+            x1="6"
+            y1="2"
+            x2="68"
+            y2="58"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#3B82F6" />
+            <stop offset="0.5" stopColor="#6366F1" />
+            <stop offset="1" stopColor="#8B5CF6" />
+          </linearGradient>
+        </defs>
 
         <g
-          stroke="currentColor"
-          strokeWidth="3.5"
-          strokeLinecap="square"
+          stroke={`url(#${gradId})`}
+          strokeWidth="8.5"
           strokeLinejoin="miter"
         >
-          {/* N */}
-          <path d="M8 8.5v23" />
-          <path d="M8 8.5l11 23" />
-          <path d="M19 8.5v23" />
+          {/* N left upright → sharp tip */}
+          <path d="M16 54V20L26 6" strokeLinecap="butt" />
+          {/* N diagonal (passes over S tip for interlock) */}
+          <path d="M16 22L42 54" strokeLinecap="butt" />
+          {/* Shared upright */}
+          <path d="M38 8V40" strokeLinecap="butt" />
+          {/* S top bar — sharp terminals */}
+          <path d="M38 14H60" strokeLinecap="butt" />
+          {/* S lower ribbon → rounded tip under the diagonal */}
+          <path
+            d="M38 32H58C68 32 70 48 52 52C42 54 30 52 18 49"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </g>
-
-        {/* S — restrained accent, same weight as N */}
-        <path
-          d="M19 13c4.65 0 7.5 2 7.5 4.85 0 2.15-1.4 3.45-4.45 4.25 3.45.7 5.55 2.3 5.55 4.95C27.6 30.15 24.6 32.3 19 32.3"
-          stroke="var(--accent)"
-          strokeWidth="3.5"
-          strokeLinecap="square"
-          strokeLinejoin="round"
-        />
       </svg>
     </span>
   );
