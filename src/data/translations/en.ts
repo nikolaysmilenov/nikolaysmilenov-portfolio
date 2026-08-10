@@ -123,7 +123,7 @@ export const en: Dictionary = {
     number: "07 / Contact",
     title: "Let's build something useful.",
     description:
-      "Have a project, opportunity or idea? Feel free to get in touch.",
+      "I'm currently looking for junior opportunities. Feel free to get in touch.",
     srTitle: "Contact",
     reachOut: "Reach out",
     email: "Email",
@@ -136,7 +136,7 @@ export const en: Dictionary = {
     emailPlaceholder: "you@example.com",
     message: "Message",
     messagePlaceholder: "Tell me about your project or idea...",
-    sendMessage: "Send Message",
+    sendMessage: "Email Me",
     formNotConnectedPrefix: "Form delivery is not connected yet. Please email",
     preferEmail: "Prefer email?",
     sendEmailTo: "Send email to",

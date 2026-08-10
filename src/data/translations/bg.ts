@@ -124,7 +124,7 @@ export const bg: Dictionary = {
     number: "07 / Контакти",
     title: "Нека създадем нещо полезно.",
     description:
-      "Имате проект, възможност или идея? Свържете се с мен.",
+      "В момента търся junior възможности. Свържете се с мен.",
     srTitle: "Контакти",
     reachOut: "Свържете се",
     email: "Имейл",
@@ -137,7 +137,7 @@ export const bg: Dictionary = {
     emailPlaceholder: "you@example.com",
     message: "Съобщение",
     messagePlaceholder: "Разкажете ми за вашия проект или идея...",
-    sendMessage: "Изпрати съобщение",
+    sendMessage: "Изпрати имейл",
     formNotConnectedPrefix:
       "Изпращането на формата все още не е свързано. Моля, пишете на",
     preferEmail: "Предпочитате имейл?",

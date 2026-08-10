@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState, type ComponentType, type SVGProps } from "react";
+import { FormEvent, type ComponentType, type SVGProps } from "react";
 import { Mail, Send } from "lucide-react";
 import { social } from "@/data/social";
 import { useLocaleContext } from "@/components/i18n/locale-provider";
@@ -12,16 +12,34 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
 
 /**
- * Contact form UI.
- * Wire an email service (Resend / Formspree / API route) in handleSubmit later.
+ * Contact UI — primary action opens the real mailto address (no backend mail service).
  */
 export function Contact() {
   const { dictionary } = useLocaleContext();
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+    if (!social.email) return;
+
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const message = String(form.get("message") ?? "").trim();
+
+    const subject = encodeURIComponent(
+      name ? `Portfolio contact from ${name}` : "Portfolio contact",
+    );
+    const body = encodeURIComponent(
+      [
+        name ? `Name: ${name}` : null,
+        email ? `Email: ${email}` : null,
+        message ? `\n${message}` : null,
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    );
+
+    window.location.href = `mailto:${social.email}?subject=${subject}&body=${body}`;
   };
 
   const methods = [
@@ -131,28 +149,15 @@ export function Contact() {
                   <Button type="submit" leftIcon={<Send className="h-4 w-4" />}>
                     {dictionary.contact.sendMessage}
                   </Button>
-                  {submitted ? (
-                    <p className="text-sm text-muted" role="status">
-                      {dictionary.contact.formNotConnectedPrefix}{" "}
-                      <a
-                        href={`mailto:${social.email}`}
-                        className="text-accent underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                      >
-                        {social.email}
-                      </a>
-                      .
-                    </p>
-                  ) : (
-                    <p className="text-xs text-muted">
-                      {dictionary.contact.preferEmail}{" "}
-                      <a
-                        href={`mailto:${social.email}`}
-                        className="text-accent underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                      >
-                        {social.email}
-                      </a>
-                    </p>
-                  )}
+                  <p className="text-xs text-muted">
+                    {dictionary.contact.preferEmail}{" "}
+                    <a
+                      href={`mailto:${social.email}`}
+                      className="text-accent underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      {social.email}
+                    </a>
+                  </p>
                 </div>
               </div>
             </form>
