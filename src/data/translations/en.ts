@@ -89,7 +89,7 @@ export const en: Dictionary = {
     number: "04 / Skills",
     title: "Technologies & Areas",
     description:
-      "Tools and domains I work with across web development, AI and cybersecurity.",
+      "Technologies I use in real projects, plus areas I'm actively learning and developing.",
     srTitle: "Technologies and Areas",
   },
   education: {
@@ -146,15 +146,14 @@ export const en: Dictionary = {
     copyright: "© 2026 Nikolay Smilenov",
   },
   seo: {
-    title: "Nikolay Smilenov | Full-Stack Developer • AI • Cybersecurity",
+    title: "Nikolay Smilenov | Junior Web Developer • AI • Cybersecurity",
     description:
-      "Personal portfolio of Nikolay Smilenov — Full-Stack Web Developer focused on modern web applications, AI and cybersecurity.",
+      "Personal portfolio of Nikolay Smilenov — Junior Web Developer building modern web applications while developing skills in AI and cybersecurity.",
     knowsAbout: [
       "Web Development",
-      "Full-Stack Development",
+      "Junior Web Development",
       "AI",
       "Cybersecurity",
-      "SaaS",
     ],
   },
 };

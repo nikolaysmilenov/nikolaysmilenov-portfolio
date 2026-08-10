@@ -46,7 +46,7 @@ export const skillCategories: SkillCategory[] = [
       bg: "Контрол на версиите и работни процеси за хостинг",
     },
     icon: "tools",
-    items: ["Git", "GitHub", "Vercel", "Cloudflare"],
+    items: ["Git", "GitHub", "Vercel"],
   },
   {
     id: "security",
@@ -55,8 +55,8 @@ export const skillCategories: SkillCategory[] = [
       bg: "Киберсигурност",
     },
     description: {
-      en: "Foundations in cybersecurity practice",
-      bg: "Основи в практиката по киберсигурност",
+      en: "Foundations from SoftUni training and hands-on practice",
+      bg: "Основи чрез обучение в SoftUni и практическа работа",
     },
     icon: "security",
     items: ["Cybersecurity", "Linux", "Networking"],
@@ -68,19 +68,17 @@ export const skillCategories: SkillCategory[] = [
       bg: "AI",
     },
     description: {
-      en: "Applying AI in products and workflows",
-      bg: "Прилагане на AI в продукти и работни процеси",
+      en: "Currently learning and exploring through SoftUni training and practical projects",
+      bg: "В момента уча и изследвам чрез обучение в SoftUni и практически проекти",
     },
     icon: "ai",
     items: [
       "AI-assisted development",
-      "AI applications",
-      "AI automation",
+      "AI Agents",
+      "Workflow Automation",
       "n8n",
       "LangChain",
       "LangGraph",
-      "AI Agents",
-      "Workflow Automation",
     ],
   },
 ];
@@ -142,8 +140,8 @@ export const currentlyLearning = [
       bg: "Уеб разработка",
     } satisfies LocalizedString,
     note: {
-      en: "Full-stack applications and digital products",
-      bg: "Full-stack приложения и дигитални продукти",
+      en: "Web applications and digital products through real projects",
+      bg: "Уеб приложения и дигитални продукти чрез реални проекти",
     } satisfies LocalizedString,
   },
   {
@@ -152,8 +150,8 @@ export const currentlyLearning = [
       bg: "AI",
     } satisfies LocalizedString,
     note: {
-      en: "AI-powered features, agents and automation",
-      bg: "AI функционалности, агенти и автоматизация",
+      en: "AI agents, workflows and automation (SoftUni course in progress)",
+      bg: "AI агенти, работни процеси и автоматизация (курс в SoftUni в процес)",
     } satisfies LocalizedString,
   },
   {
@@ -168,12 +166,12 @@ export const currentlyLearning = [
   },
   {
     category: {
-      en: "Software Engineering / DevOps",
-      bg: "Software Engineering / DevOps",
+      en: "Development & Deployment",
+      bg: "Разработка и deployment",
     } satisfies LocalizedString,
     note: {
-      en: "Deployment, hosting and modern tooling",
-      bg: "Deployment, хостинг и модерни инструменти",
+      en: "Git, hosting, deployment and modern development tooling",
+      bg: "Git, хостинг, deployment и модерни инструменти за разработка",
     } satisfies LocalizedString,
   },
 ] as const;

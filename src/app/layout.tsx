@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   keywords: [
     "Nikolay Smilenov",
     "Николай Смиленов",
-    "Full-Stack Web Developer",
+    "Junior Web Developer",
     "AI",
     "Cybersecurity",
     "Киберсигурност",

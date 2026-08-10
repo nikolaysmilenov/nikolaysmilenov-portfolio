@@ -4,25 +4,25 @@ export const siteConfig = {
   name: "Nikolay Smilenov",
   shortName: "NS",
   title: {
-    en: "Nikolay Smilenov | Full-Stack Developer • AI • Cybersecurity",
-    bg: "Николай Смиленов | Full-Stack Developer • AI • Киберсигурност",
+    en: "Nikolay Smilenov | Junior Web Developer • AI • Cybersecurity",
+    bg: "Николай Смиленов | Junior Web Developer • AI • Киберсигурност",
   } satisfies LocalizedString,
   description: {
-    en: "Personal portfolio of Nikolay Smilenov — Full-Stack Web Developer focused on modern web applications, AI and cybersecurity.",
-    bg: "Персонално портфолио на Николай Смиленов — Full-Stack Web Developer с фокус върху модерни уеб приложения, AI и киберсигурност.",
+    en: "Personal portfolio of Nikolay Smilenov — Junior Web Developer building modern web applications while developing skills in AI and cybersecurity.",
+    bg: "Персонално портфолио на Николай Смиленов — Junior Web Developer, който създава модерни уеб приложения, докато развива умения в AI и киберсигурността.",
   } satisfies LocalizedString,
   url: "https://nikolaysmilenov.dev",
   role: {
-    en: "Full-Stack Web Developer",
-    bg: "Full-Stack Web Developer",
+    en: "Junior Web Developer",
+    bg: "Junior Web Developer",
   } satisfies LocalizedString,
   focus: {
     en: ["AI", "Cybersecurity", "Web Development"],
     bg: ["AI", "Киберсигурност", "Уеб разработка"],
   },
   tagline: {
-    en: "Building modern web applications and digital products while developing deeper expertise in AI, cybersecurity and software engineering.",
-    bg: "Създавам модерни уеб приложения и дигитални продукти, докато задълбочавам експертизата си в AI, киберсигурността и софтуерното инженерство.",
+    en: "Building modern web applications and digital products while developing my skills in AI, cybersecurity and software engineering.",
+    bg: "Създавам модерни уеб приложения и дигитални продукти, докато развивам уменията си в AI, киберсигурността и софтуерното инженерство.",
   } satisfies LocalizedString,
   profilePath: "/profile/nikolay-smilenov.jpg",
   ogImage: "/og-image.png",
