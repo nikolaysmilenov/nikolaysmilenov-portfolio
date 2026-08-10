@@ -9,8 +9,8 @@ type BrandLogoProps = {
 };
 
 /**
- * Geometric NS monogram — unmistakably “NS”.
- * Custom stroked letterforms (not a font): clear N stems + diagonal, clear open S.
+ * NS monogram — inline SVG recreation of the approved brand mark.
+ * Sharp geometric N interlocking with flowing S; blue → violet gradient.
  */
 export function BrandLogo({
   className,
@@ -23,12 +23,12 @@ export function BrandLogo({
   return (
     <span
       className={cn(
-        "relative inline-flex h-9 w-[3rem] shrink-0 items-center sm:h-10 sm:w-[3.35rem]",
+        "relative inline-flex h-9 w-10 shrink-0 items-center sm:h-10 sm:w-11",
         className,
       )}
     >
       <svg
-        viewBox="0 0 64 46"
+        viewBox="0 0 72 60"
         role="img"
         aria-labelledby={titleId}
         className="h-full w-full"
@@ -38,10 +38,10 @@ export function BrandLogo({
         <defs>
           <linearGradient
             id={gradId}
-            x1="2"
+            x1="6"
             y1="2"
-            x2="62"
-            y2="44"
+            x2="68"
+            y2="58"
             gradientUnits="userSpaceOnUse"
           >
             <stop stopColor="#3B82F6" />
@@ -52,17 +52,23 @@ export function BrandLogo({
 
         <g
           stroke={`url(#${gradId})`}
-          strokeWidth="4.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          strokeWidth="8.5"
+          strokeLinejoin="miter"
         >
-          {/* N — left stem, diagonal, right stem */}
-          <path d="M5 5V41" />
-          <path d="M5 5L21 41" />
-          <path d="M21 5V41" />
-
-          {/* S — upper curve (opens left), middle, lower curve (opens right); waist near N */}
-          <path d="M27 13C27 7 33.5 4.5 42 4.5C52.5 4.5 57.5 9.2 57.5 15.2C57.5 20.6 52.2 23.6 42 24.8C31 26.2 24.5 29.6 24.5 34.8C24.5 40.2 32.2 43 44.5 43C52 43 57 40.8 58.5 37.2" />
+          {/* N left upright → sharp tip */}
+          <path d="M16 54V20L26 6" strokeLinecap="butt" />
+          {/* N diagonal (passes over S tip for interlock) */}
+          <path d="M16 22L42 54" strokeLinecap="butt" />
+          {/* Shared upright */}
+          <path d="M38 8V40" strokeLinecap="butt" />
+          {/* S top bar — sharp terminals */}
+          <path d="M38 14H60" strokeLinecap="butt" />
+          {/* S lower ribbon → rounded tip under the diagonal */}
+          <path
+            d="M38 32H58C68 32 70 48 52 52C42 54 30 52 18 49"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </g>
       </svg>
     </span>
