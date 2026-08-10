@@ -93,19 +93,19 @@ export const aboutFocus = [
       bg: "Уеб разработка",
     } satisfies LocalizedString,
     description: {
-      en: "Building modern web applications and interfaces.",
-      bg: "Създаване на модерни уеб приложения и интерфейси.",
+      en: "Building modern, responsive web applications and interfaces through real-world projects.",
+      bg: "Създаване на модерни, адаптивни уеб приложения и интерфейси чрез реални проекти.",
     } satisfies LocalizedString,
   },
   {
     id: "ai",
     title: {
-      en: "AI",
-      bg: "AI",
+      en: "AI & Automation",
+      bg: "AI и автоматизация",
     } satisfies LocalizedString,
     description: {
-      en: "Exploring AI-powered features and automation.",
-      bg: "Изследване на AI функционалности и автоматизация.",
+      en: "Learning AI agents, workflows and automation while applying them to practical projects.",
+      bg: "Учене на AI агенти, работни процеси и автоматизация и прилагането им в практически проекти.",
     } satisfies LocalizedString,
   },
   {
@@ -115,19 +115,19 @@ export const aboutFocus = [
       bg: "Киберсигурност",
     } satisfies LocalizedString,
     description: {
-      en: "Growing skills through SoftUni training and practice.",
-      bg: "Развиване на умения чрез обучение в SoftUni и практика.",
+      en: "Developing practical cybersecurity skills through SoftUni training and hands-on practice.",
+      bg: "Развиване на практически умения по киберсигурност чрез обучение в SoftUni и практика.",
     } satisfies LocalizedString,
   },
   {
-    id: "products",
+    id: "learning",
     title: {
-      en: "Digital Products",
-      bg: "Дигитални продукти",
+      en: "Continuous Learning",
+      bg: "Непрекъснато учене",
     } satisfies LocalizedString,
     description: {
-      en: "Shipping useful platforms and product-minded work.",
-      bg: "Реализиране на полезни платформи и продуктово ориентирана работа.",
+      en: "Continuously expanding my technical skills by building, testing and improving real applications.",
+      bg: "Непрекъснато разширявам техническите си умения чрез изграждане, тестване и подобряване на реални приложения.",
     } satisfies LocalizedString,
   },
 ] as const;

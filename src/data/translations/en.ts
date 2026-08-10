@@ -44,9 +44,9 @@ export const en: Dictionary = {
     number: "01 / About",
     title: "About Me",
     paragraph1:
-      "I'm a developer focused on building modern web applications and digital products, with growing interests in AI and cybersecurity.",
+      "I'm an aspiring Junior Web Developer focused on building modern web applications and real digital products. I'm currently developing my skills in web development, AI and cybersecurity through hands-on learning and real projects.",
     paragraph2:
-      "I learn primarily by building — turning ideas into working websites, platforms and tools while continuously expanding my technical knowledge.",
+      "I learn by building — turning ideas into working applications, deploying them, testing them and continuously improving both my technical skills and the products I create. That approach has shaped independent work such as Satovcha.info, PromoGuru.bg and Stinger, a private project.",
   },
   projects: {
     number: "02 / Projects",

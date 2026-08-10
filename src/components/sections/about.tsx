@@ -1,4 +1,4 @@
-import { Brain, Code2, Package, Shield } from "lucide-react";
+import { BookOpen, Brain, Code2, Shield } from "lucide-react";
 import { aboutFocus } from "@/data/skills";
 import { getDictionary } from "@/data/translations";
 import { Container } from "@/components/ui/container";
@@ -10,7 +10,7 @@ const focusIcons = {
   web: Code2,
   ai: Brain,
   security: Shield,
-  products: Package,
+  learning: BookOpen,
 } as const;
 
 export function About({ locale }: { locale: Locale }) {
