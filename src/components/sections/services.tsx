@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import {
   formatServicePrice,
   serviceCategories,
@@ -74,6 +75,8 @@ export function Services() {
                       <ServiceCard
                         service={service}
                         variant={category.variant}
+                        popular={service.id === "maintenance-standard"}
+                        mostPopularLabel={dictionary.services.mostPopular}
                         priceLabel={formatServicePrice(
                           service.price,
                           service.priceType,
@@ -82,10 +85,12 @@ export function Services() {
                         )}
                         ctaLabel={
                           category.variant === "custom"
-                            ? dictionary.services.ctaButton
+                            ? dictionary.services.customProjectCta
                             : category.variant === "maintenance"
                               ? dictionary.services.getQuote
-                              : dictionary.services.discussProject
+                              : category.id === "websites"
+                                ? dictionary.services.choosePackage
+                                : dictionary.services.discussProject
                         }
                         onInquire={() =>
                           openContactWithService(
@@ -127,8 +132,17 @@ export function Services() {
               </p>
             </div>
             <Button
-              className="mt-5 shrink-0 sm:mt-0"
-              onClick={() => openContactWithService("custom-project")}
+              className="mt-5 w-full shrink-0 sm:mt-0 sm:w-auto"
+              rightIcon={<ArrowUpRight className="h-4 w-4" aria-hidden />}
+              onClick={() =>
+                openContactWithService(
+                  "custom-project",
+                  pick(
+                    { en: "Custom Project", bg: "Персонализиран проект" },
+                    locale,
+                  ),
+                )
+              }
             >
               {dictionary.services.ctaButton}
             </Button>
@@ -142,12 +156,16 @@ export function Services() {
 function ServiceCard({
   service,
   variant,
+  popular,
+  mostPopularLabel,
   priceLabel,
   ctaLabel,
   onInquire,
 }: {
   service: Service;
   variant: "project" | "maintenance" | "custom";
+  popular?: boolean;
+  mostPopularLabel: string;
   priceLabel: string;
   ctaLabel: string;
   onInquire: () => void;
@@ -158,14 +176,22 @@ function ServiceCard({
   return (
     <article
       className={cn(
-        "flex h-full flex-col rounded-2xl border p-5 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 sm:p-6",
-        variant === "maintenance"
-          ? "border-accent/25 bg-accent/[0.04] hover:border-accent/40"
-          : variant === "custom"
-            ? "border-border bg-surface/90 hover:border-accent/30 sm:flex-row sm:items-stretch sm:gap-8"
-            : "border-border bg-surface/80 hover:border-accent/30",
+        "relative flex h-full flex-col rounded-2xl border p-5 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 sm:p-6",
+        popular
+          ? "border-accent/50 bg-accent/[0.07] shadow-[0_0_0_1px_color-mix(in_oklab,var(--accent)_18%,transparent),0_12px_32px_-18px_color-mix(in_oklab,var(--accent)_45%,transparent)]"
+          : variant === "maintenance"
+            ? "border-border bg-surface/80 hover:border-accent/30"
+            : variant === "custom"
+              ? "border-border bg-surface/90 hover:border-accent/30 sm:flex-row sm:items-stretch sm:gap-8"
+              : "border-border bg-surface/80 hover:border-accent/30",
       )}
     >
+      {popular ? (
+        <span className="mb-3 inline-flex w-fit items-center rounded-full bg-accent px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-accent-foreground uppercase">
+          {mostPopularLabel}
+        </span>
+      ) : null}
+
       <div className={cn(variant === "custom" && "sm:max-w-md sm:shrink-0")}>
         <h4 className="font-display text-lg font-semibold text-foreground">
           {pick(service.title, locale)}
@@ -198,9 +224,10 @@ function ServiceCard({
           ))}
         </ul>
         <Button
-          variant={variant === "maintenance" ? "secondary" : "outline"}
+          variant="primary"
           size="sm"
-          className="mt-6 w-full sm:mt-auto sm:w-auto"
+          className="mt-6 w-full whitespace-normal text-center leading-snug sm:mt-auto"
+          rightIcon={<ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden />}
           onClick={onInquire}
         >
           {ctaLabel}

@@ -78,7 +78,10 @@ export type Dictionary = {
     perMonth: string;
     perHour: string;
     discussProject: string;
+    choosePackage: string;
     getQuote: string;
+    customProjectCta: string;
+    mostPopular: string;
     pricingNote: string;
     additionalWork: string;
     additionalWorkDescription: string;

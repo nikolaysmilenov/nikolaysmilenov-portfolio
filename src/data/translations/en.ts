@@ -84,7 +84,10 @@ export const en: Dictionary = {
     perMonth: "/ month",
     perHour: "/ hour",
     discussProject: "Discuss Project",
+    choosePackage: "Choose Package",
     getQuote: "Get a Quote",
+    customProjectCta: "Have an idea? Let's discuss it",
+    mostPopular: "Most Popular",
     pricingNote:
       "Prices are starting points. Final quotes depend on project scope, requirements and complexity.",
     additionalWork: "Additional work",

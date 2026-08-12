@@ -35,21 +35,29 @@ export function Contact() {
   const [serviceId, setServiceId] = useState<ServiceInquiryId | "">("");
 
   useEffect(() => {
+    const interestPrefix =
+      locale === "bg" ? "Интересувам се от:" : "I'm interested in:";
+
     const applyIntent = () => {
       const intent = readContactServiceIntent();
       if (!intent) return;
       setServiceId(intent.serviceId);
-      if (intent.detail) {
-        const message = document.getElementById(
-          "message",
-        ) as HTMLTextAreaElement | null;
-        if (message && !message.value.trim()) {
-          message.value =
-            locale === "bg"
-              ? `Интересувам се от: ${intent.detail}`
-              : `I'm interested in: ${intent.detail}`;
+
+      const message = document.getElementById(
+        "message",
+      ) as HTMLTextAreaElement | null;
+      if (message && intent.detail) {
+        const current = message.value.trim();
+        if (!current || current.startsWith(interestPrefix)) {
+          message.value = `${interestPrefix} ${intent.detail}`;
         }
       }
+
+      const select = document.getElementById("service") as HTMLSelectElement | null;
+      select?.classList.add("ring-2", "ring-accent/60");
+      window.setTimeout(() => {
+        select?.classList.remove("ring-2", "ring-accent/60");
+      }, 1600);
     };
 
     applyIntent();

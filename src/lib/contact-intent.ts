@@ -41,6 +41,7 @@ export function openContactWithService(
   detail?: string,
 ) {
   if (typeof window === "undefined") return;
+
   if (serviceId) {
     storeContactServiceIntent({ serviceId, detail });
     window.dispatchEvent(
@@ -49,5 +50,15 @@ export function openContactWithService(
       }),
     );
   }
+
+  const contact = document.getElementById("contact");
+  if (contact) {
+    contact.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (window.location.hash !== "#contact") {
+      history.pushState(null, "", "#contact");
+    }
+    return;
+  }
+
   window.location.hash = "contact";
 }

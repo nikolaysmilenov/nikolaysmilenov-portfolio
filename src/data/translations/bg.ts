@@ -83,8 +83,11 @@ export const bg: Dictionary = {
     startingFrom: "От",
     perMonth: "/ месец",
     perHour: "/ час",
-    discussProject: "Обсъдете проекта",
-    getQuote: "Получете оферта",
+    discussProject: "Обсъди проекта",
+    choosePackage: "Избери пакет",
+    getQuote: "Получаване на оферта",
+    customProjectCta: "Имаш идея? Нека я обсъдим",
+    mostPopular: "НАЙ-ПОПУЛЯРЕН",
     pricingNote:
       "Посочените цени са начални. Крайната цена зависи от обхвата, изискванията и сложността на проекта.",
     additionalWork: "Допълнителна работа",

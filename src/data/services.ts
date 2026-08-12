@@ -53,8 +53,8 @@ export const serviceInquiryOptions = [
   {
     id: "custom-web-app",
     title: {
-      en: "Custom Web Application",
-      bg: "Персонализирано уеб приложение",
+      en: "Custom Web Applications",
+      bg: "Персонализирани уеб приложения",
     },
   },
   {
@@ -62,8 +62,16 @@ export const serviceInquiryOptions = [
     title: { en: "Custom Software", bg: "Персонализиран софтуер" },
   },
   {
-    id: "website-maintenance",
-    title: { en: "Website Maintenance", bg: "Поддръжка на уебсайт" },
+    id: "essential-care",
+    title: { en: "Essential Care", bg: "Essential Care" },
+  },
+  {
+    id: "business-care",
+    title: { en: "Business Care", bg: "Business Care" },
+  },
+  {
+    id: "priority-care",
+    title: { en: "Priority Care", bg: "Priority Care" },
   },
   {
     id: "custom-project",
@@ -340,7 +348,7 @@ export const serviceCategories: ServiceCategory[] = [
     services: [
       {
         id: "maintenance-essential",
-        inquiryId: "website-maintenance",
+        inquiryId: "essential-care",
         category: "maintenance",
         title: { en: "Essential Care", bg: "Essential Care" },
         description: {
@@ -368,7 +376,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         id: "maintenance-standard",
-        inquiryId: "website-maintenance",
+        inquiryId: "business-care",
         category: "maintenance",
         title: { en: "Business Care", bg: "Business Care" },
         description: {
@@ -398,7 +406,7 @@ export const serviceCategories: ServiceCategory[] = [
       },
       {
         id: "maintenance-priority",
-        inquiryId: "website-maintenance",
+        inquiryId: "priority-care",
         category: "maintenance",
         title: { en: "Priority Care", bg: "Priority Care" },
         description: {
