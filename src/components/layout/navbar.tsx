@@ -9,7 +9,6 @@ import { usePathLocale } from "@/components/i18n/use-path-locale";
 import { navLinks, type NavLinkId } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 import { social } from "@/data/social";
-import { BrandLogo } from "@/components/ui/brand-logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
@@ -95,19 +94,11 @@ export function Navbar() {
       >
         <Link
           href="#home"
-          className={cn(
-            "group flex min-w-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
-            isBg ? "gap-2 lg:max-w-[12.5rem] xl:max-w-none" : "gap-3",
-          )}
+          className="group min-w-0 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           onClick={closeMenu}
           aria-label={siteConfig.name}
         >
-          <BrandLogo title={`${siteConfig.name} logo`} />
-          <span
-            className="hidden h-5 w-px shrink-0 bg-border sm:block"
-            aria-hidden
-          />
-          <span className="hidden truncate font-display text-sm font-semibold tracking-tight text-foreground sm:inline">
+          <span className="truncate font-display text-sm font-semibold tracking-tight text-foreground">
             {siteConfig.name}
           </span>
         </Link>
