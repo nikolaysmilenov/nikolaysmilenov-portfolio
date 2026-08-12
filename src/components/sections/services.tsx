@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  additionalHourlyRate,
   formatServicePrice,
   serviceCategories,
   type Service,
@@ -101,18 +100,7 @@ export function Services() {
 
                 {category.variant === "maintenance" ? (
                   <div className="rounded-2xl border border-dashed border-border bg-surface/40 px-4 py-3 sm:px-5">
-                    <p className="text-sm font-medium text-foreground">
-                      {dictionary.services.additionalWork}
-                      <span className="ml-2 text-accent">
-                        {formatServicePrice(
-                          additionalHourlyRate.price,
-                          additionalHourlyRate.priceType,
-                          locale,
-                          priceLabels,
-                        )}
-                      </span>
-                    </p>
-                    <p className="mt-1 text-sm text-muted">
+                    <p className="text-sm text-muted">
                       {dictionary.services.additionalWorkDescription}
                     </p>
                   </div>

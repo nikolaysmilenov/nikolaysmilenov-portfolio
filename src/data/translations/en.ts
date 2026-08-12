@@ -89,7 +89,7 @@ export const en: Dictionary = {
       "Prices are starting points. Final quotes depend on project scope, requirements and complexity.",
     additionalWork: "Additional work",
     additionalWorkDescription:
-      "Extra work outside a maintenance plan is billed at €30 / hour.",
+      "Additional work outside the included monthly service allowance: €30 / hour.",
     ctaTitle: "Have a project in mind?",
     ctaDescription:
       "Tell me what you're trying to build, what problem you're solving, or what you need improved. I'll review the requirements and let you know what's realistic.",
