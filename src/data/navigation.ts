@@ -2,6 +2,7 @@ export const navLinkIds = [
   "home",
   "about",
   "projects",
+  "services",
   "certificates",
   "skills",
   "education",
@@ -14,6 +15,7 @@ export const navLinks = [
   { id: "home", href: "#home" },
   { id: "about", href: "#about" },
   { id: "projects", href: "#projects" },
+  { id: "services", href: "#services" },
   { id: "certificates", href: "#certificates" },
   { id: "skills", href: "#skills" },
   { id: "education", href: "#education" },
@@ -22,6 +24,7 @@ export const navLinks = [
 
 export const footerLinks = [
   { id: "projects", href: "#projects" },
+  { id: "services", href: "#services" },
   { id: "certificates", href: "#certificates" },
   { id: "contact", href: "#contact" },
 ] as const;

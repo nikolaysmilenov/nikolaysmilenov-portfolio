@@ -8,6 +8,7 @@ export const en: Dictionary = {
     home: "Home",
     about: "About",
     projects: "Projects",
+    services: "Services",
     certificates: "Certificates",
     skills: "Skills",
     education: "Education",
@@ -73,8 +74,29 @@ export const en: Dictionary = {
     screenshotAlt: "project screenshot",
     caseStudyScreenshotAlt: "case study screenshot",
   },
+  services: {
+    number: "03 / Services",
+    title: "Services",
+    description:
+      "Websites, software and digital solutions built around your needs.",
+    srTitle: "Services",
+    startingFrom: "Starting from",
+    perMonth: "/ month",
+    perHour: "/ hour",
+    discussProject: "Discuss Project",
+    getQuote: "Get a Quote",
+    pricingNote:
+      "Prices are starting points. Final quotes depend on project scope, requirements and complexity.",
+    additionalWork: "Additional work",
+    additionalWorkDescription:
+      "Extra work outside a maintenance plan is billed at €30 / hour.",
+    ctaTitle: "Have a project in mind?",
+    ctaDescription:
+      "Tell me what you're trying to build, what problem you're solving, or what you need improved. I'll review the requirements and let you know what's realistic.",
+    ctaButton: "Discuss Your Project",
+  },
   certificates: {
-    number: "03 / Certificates",
+    number: "04 / Certificates",
     title: "Certificates",
     description: "Completed SoftUni cybersecurity courses with verified grades.",
     srTitle: "Certificates",
@@ -86,14 +108,14 @@ export const en: Dictionary = {
     closeCertificate: "Close certificate dialog",
   },
   skills: {
-    number: "04 / Skills",
+    number: "05 / Skills",
     title: "Technologies & Areas",
     description:
       "Technologies I use in real projects, plus areas I'm actively learning and developing.",
     srTitle: "Technologies and Areas",
   },
   education: {
-    number: "05 / Education",
+    number: "06 / Education",
     title: "Education & Professional Development",
     description:
       "Completed SoftUni cybersecurity training and current study of AI agents and workflow automation.",
@@ -113,14 +135,14 @@ export const en: Dictionary = {
     certificatesAria: "certificates",
   },
   journey: {
-    number: "06 / Journey",
+    number: "07 / Journey",
     title: "Learning & Development Journey",
     description:
       "A concise timeline of continuous development in cybersecurity, web development, AI and digital products.",
     srTitle: "Learning and Development Journey",
   },
   contact: {
-    number: "07 / Contact",
+    number: "08 / Contact",
     title: "Let's build something useful.",
     description:
       "I'm currently looking for junior opportunities. Feel free to get in touch.",
@@ -131,6 +153,8 @@ export const en: Dictionary = {
     linkedin: "LinkedIn",
     emptyMethods:
       "Prefer email or a quick message? Use the form and I'll get back to you.",
+    service: "Service",
+    servicePlaceholder: "Select a service",
     name: "Name",
     namePlaceholder: "Your name",
     emailPlaceholder: "you@example.com",
@@ -140,6 +164,11 @@ export const en: Dictionary = {
     formNotConnectedPrefix: "Form delivery is not connected yet. Please email",
     preferEmail: "Prefer email?",
     sendEmailTo: "Send email to",
+    inquirySubjectPrefix: "Project inquiry",
+    inquiryServiceLabel: "Service",
+    inquiryNameLabel: "Name",
+    inquiryEmailLabel: "Email",
+    inquiryMessageLabel: "Message",
   },
   footer: {
     builtWith: "Built with Next.js",

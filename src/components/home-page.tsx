@@ -5,6 +5,7 @@ import { Education } from "@/components/sections/education";
 import { Hero } from "@/components/sections/hero";
 import { Journey } from "@/components/sections/journey";
 import { Projects } from "@/components/sections/projects";
+import { Services } from "@/components/sections/services";
 import { Skills } from "@/components/sections/skills";
 import { LocaleProvider } from "@/components/i18n/locale-provider";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -17,6 +18,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Hero locale={locale} />
         <About locale={locale} />
         <Projects />
+        <Services />
         <Certificates />
         <Skills locale={locale} />
         <Education locale={locale} />

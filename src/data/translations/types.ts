@@ -6,6 +6,7 @@ export type Dictionary = {
     home: string;
     about: string;
     projects: string;
+    services: string;
     certificates: string;
     skills: string;
     education: string;
@@ -68,6 +69,23 @@ export type Dictionary = {
     screenshotAlt: string;
     caseStudyScreenshotAlt: string;
   };
+  services: {
+    number: string;
+    title: string;
+    description: string;
+    srTitle: string;
+    startingFrom: string;
+    perMonth: string;
+    perHour: string;
+    discussProject: string;
+    getQuote: string;
+    pricingNote: string;
+    additionalWork: string;
+    additionalWorkDescription: string;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButton: string;
+  };
   certificates: {
     number: string;
     title: string;
@@ -120,6 +138,8 @@ export type Dictionary = {
     github: string;
     linkedin: string;
     emptyMethods: string;
+    service: string;
+    servicePlaceholder: string;
     name: string;
     namePlaceholder: string;
     emailPlaceholder: string;
@@ -129,6 +149,11 @@ export type Dictionary = {
     formNotConnectedPrefix: string;
     preferEmail: string;
     sendEmailTo: string;
+    inquirySubjectPrefix: string;
+    inquiryServiceLabel: string;
+    inquiryNameLabel: string;
+    inquiryEmailLabel: string;
+    inquiryMessageLabel: string;
   };
   footer: {
     builtWith: string;

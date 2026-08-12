@@ -14,6 +14,7 @@ export function Footer() {
 
   const footerLabels: Partial<Record<NavLinkId, string>> = {
     projects: dictionary.nav.projects,
+    services: dictionary.nav.services,
     certificates: dictionary.nav.certificates,
     contact: dictionary.nav.contact,
   };

@@ -8,6 +8,7 @@ export const bg: Dictionary = {
     home: "Начало",
     about: "За мен",
     projects: "Проекти",
+    services: "Услуги",
     certificates: "Сертификати",
     skills: "Умения",
     education: "Образование",
@@ -73,8 +74,29 @@ export const bg: Dictionary = {
     screenshotAlt: "екранна снимка на проекта",
     caseStudyScreenshotAlt: "екранна снимка от казуса",
   },
+  services: {
+    number: "03 / Услуги",
+    title: "Услуги",
+    description:
+      "Уебсайтове, софтуер и дигитални решения, съобразени с вашите нужди.",
+    srTitle: "Услуги",
+    startingFrom: "От",
+    perMonth: "/ месец",
+    perHour: "/ час",
+    discussProject: "Обсъдете проекта",
+    getQuote: "Получете оферта",
+    pricingNote:
+      "Посочените цени са начални. Крайната цена зависи от обхвата, изискванията и сложността на проекта.",
+    additionalWork: "Допълнителна работа",
+    additionalWorkDescription:
+      "Допълнителна работа извън план за поддръжка се таксува по €30 / час.",
+    ctaTitle: "Имате идея за проект?",
+    ctaDescription:
+      "Споделете какво искате да изградите, какъв проблем решавате или какво трябва да подобрим. Ще прегледам изискванията и ще кажа какво е реалистично.",
+    ctaButton: "Обсъдете проекта",
+  },
   certificates: {
-    number: "03 / Сертификати",
+    number: "04 / Сертификати",
     title: "Сертификати",
     description:
       "Завършени курсове по киберсигурност в SoftUni с потвърдени оценки.",
@@ -87,14 +109,14 @@ export const bg: Dictionary = {
     closeCertificate: "Затвори диалога със сертификата",
   },
   skills: {
-    number: "04 / Умения",
+    number: "05 / Умения",
     title: "Технологии и области",
     description:
       "Технологии, които използвам в реални проекти, плюс области, които активно уча и развивам.",
     srTitle: "Технологии и области",
   },
   education: {
-    number: "05 / Образование",
+    number: "06 / Образование",
     title: "Образование и професионално развитие",
     description:
       "Завършено обучение по киберсигурност в SoftUni и текущо изучаване на AI агенти и автоматизация на работни процеси.",
@@ -114,14 +136,14 @@ export const bg: Dictionary = {
     certificatesAria: "сертификати",
   },
   journey: {
-    number: "06 / Път",
+    number: "07 / Път",
     title: "Път на обучение и развитие",
     description:
       "Кратка хронология на непрекъснатото развитие в киберсигурността, уеб разработката, AI и дигиталните продукти.",
     srTitle: "Път на обучение и развитие",
   },
   contact: {
-    number: "07 / Контакти",
+    number: "08 / Контакти",
     title: "Нека създадем нещо полезно.",
     description:
       "В момента търся junior възможности. Свържете се с мен.",
@@ -132,6 +154,8 @@ export const bg: Dictionary = {
     linkedin: "LinkedIn",
     emptyMethods:
       "Предпочитате имейл или кратко съобщение? Използвайте формата и ще се свържа с вас.",
+    service: "Услуга",
+    servicePlaceholder: "Изберете услуга",
     name: "Име",
     namePlaceholder: "Вашето име",
     emailPlaceholder: "you@example.com",
@@ -142,6 +166,11 @@ export const bg: Dictionary = {
       "Изпращането на формата все още не е свързано. Моля, пишете на",
     preferEmail: "Предпочитате имейл?",
     sendEmailTo: "Изпрати имейл до",
+    inquirySubjectPrefix: "Запитване за проект",
+    inquiryServiceLabel: "Услуга",
+    inquiryNameLabel: "Име",
+    inquiryEmailLabel: "Имейл",
+    inquiryMessageLabel: "Съобщение",
   },
   footer: {
     builtWith: "Създадено с Next.js",

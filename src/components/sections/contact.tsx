@@ -1,7 +1,19 @@
 "use client";
 
-import { FormEvent, type ComponentType, type SVGProps } from "react";
+import {
+  FormEvent,
+  useEffect,
+  useState,
+  type ComponentType,
+  type SVGProps,
+} from "react";
 import { Mail, Send } from "lucide-react";
+import {
+  getServiceInquiryTitle,
+  isServiceInquiryId,
+  serviceInquiryOptions,
+  type ServiceInquiryId,
+} from "@/data/services";
 import { social } from "@/data/social";
 import { useLocaleContext } from "@/components/i18n/locale-provider";
 import { Button } from "@/components/ui/button";
@@ -9,13 +21,45 @@ import { Container } from "@/components/ui/container";
 import { FadeIn } from "@/components/ui/fade-in";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { SectionHeading } from "@/components/ui/section-heading";
+import {
+  clearContactServiceIntent,
+  readContactServiceIntent,
+} from "@/lib/contact-intent";
 import { cn } from "@/lib/utils";
 
 /**
  * Contact UI — primary action opens the real mailto address (no backend mail service).
  */
 export function Contact() {
-  const { dictionary } = useLocaleContext();
+  const { locale, dictionary } = useLocaleContext();
+  const [serviceId, setServiceId] = useState<ServiceInquiryId | "">("");
+
+  useEffect(() => {
+    const applyIntent = () => {
+      const intent = readContactServiceIntent();
+      if (!intent) return;
+      setServiceId(intent.serviceId);
+      if (intent.detail) {
+        const message = document.getElementById(
+          "message",
+        ) as HTMLTextAreaElement | null;
+        if (message && !message.value.trim()) {
+          message.value =
+            locale === "bg"
+              ? `Интересувам се от: ${intent.detail}`
+              : `I'm interested in: ${intent.detail}`;
+        }
+      }
+    };
+
+    applyIntent();
+    window.addEventListener("hashchange", applyIntent);
+    window.addEventListener("contact-service-intent", applyIntent);
+    return () => {
+      window.removeEventListener("hashchange", applyIntent);
+      window.removeEventListener("contact-service-intent", applyIntent);
+    };
+  }, [locale]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,20 +69,34 @@ export function Contact() {
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
     const message = String(form.get("message") ?? "").trim();
+    const selectedService = String(form.get("service") ?? "").trim();
+    const serviceTitle =
+      selectedService && isServiceInquiryId(selectedService)
+        ? getServiceInquiryTitle(selectedService, locale)
+        : null;
 
     const subject = encodeURIComponent(
-      name ? `Portfolio contact from ${name}` : "Portfolio contact",
-    );
-    const body = encodeURIComponent(
-      [
-        name ? `Name: ${name}` : null,
-        email ? `Email: ${email}` : null,
-        message ? `\n${message}` : null,
-      ]
-        .filter(Boolean)
-        .join("\n"),
+      serviceTitle
+        ? `${dictionary.contact.inquirySubjectPrefix} — ${serviceTitle}`
+        : name
+          ? `Portfolio contact from ${name}`
+          : "Portfolio contact",
     );
 
+    const body = encodeURIComponent(
+      [
+        serviceTitle
+          ? `${dictionary.contact.inquiryServiceLabel}:\n${serviceTitle}`
+          : null,
+        name ? `${dictionary.contact.inquiryNameLabel}:\n${name}` : null,
+        email ? `${dictionary.contact.inquiryEmailLabel}:\n${email}` : null,
+        message ? `${dictionary.contact.inquiryMessageLabel}:\n${message}` : null,
+      ]
+        .filter(Boolean)
+        .join("\n\n"),
+    );
+
+    clearContactServiceIntent();
     window.location.href = `mailto:${social.email}?subject=${subject}&body=${body}`;
   };
 
@@ -110,6 +168,36 @@ export function Contact() {
               noValidate
             >
               <div className="grid gap-5">
+                <div>
+                  <label
+                    htmlFor="service"
+                    className="mb-2 block text-sm font-medium text-foreground"
+                  >
+                    {dictionary.contact.service}
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    value={serviceId}
+                    onChange={(event) =>
+                      setServiceId(
+                        isServiceInquiryId(event.target.value)
+                          ? event.target.value
+                          : "",
+                      )
+                    }
+                    className="field-input"
+                  >
+                    <option value="">
+                      {dictionary.contact.servicePlaceholder}
+                    </option>
+                    {serviceInquiryOptions.map((option) => (
+                      <option key={option.id} value={option.id}>
+                        {option.title[locale]}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <Field
                   id="name"
                   name="name"

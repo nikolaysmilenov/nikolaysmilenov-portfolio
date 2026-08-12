@@ -25,6 +25,7 @@ export function Navbar() {
     home: dictionary.nav.home,
     about: dictionary.nav.about,
     projects: dictionary.nav.projects,
+    services: dictionary.nav.services,
     certificates: dictionary.nav.certificates,
     skills: dictionary.nav.skills,
     education: dictionary.nav.education,
