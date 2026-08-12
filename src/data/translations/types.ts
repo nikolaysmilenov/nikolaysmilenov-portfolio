@@ -149,6 +149,9 @@ export type Dictionary = {
     message: string;
     messagePlaceholder: string;
     sendMessage: string;
+    sending: string;
+    submitSuccess: string;
+    submitError: string;
     formNotConnectedPrefix: string;
     preferEmail: string;
     sendEmailTo: string;

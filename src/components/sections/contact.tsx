@@ -9,7 +9,6 @@ import {
 } from "react";
 import { Mail, Send } from "lucide-react";
 import {
-  getServiceInquiryTitle,
   isServiceInquiryId,
   serviceInquiryOptions,
   type ServiceInquiryId,
@@ -27,12 +26,20 @@ import {
 } from "@/lib/contact-intent";
 import { cn } from "@/lib/utils";
 
+type SubmitStatus = "idle" | "sending" | "success" | "error";
+
 /**
- * Contact UI — primary action opens the real mailto address (no backend mail service).
+ * Contact UI — submits through /api/contact (Resend) without opening a mail client.
  */
 export function Contact() {
   const { locale, dictionary } = useLocaleContext();
   const [serviceId, setServiceId] = useState<ServiceInquiryId | "">("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [feedback, setFeedback] = useState<string | null>(null);
 
   useEffect(() => {
     const interestPrefix =
@@ -42,22 +49,28 @@ export function Contact() {
       const intent = readContactServiceIntent();
       if (!intent) return;
       setServiceId(intent.serviceId);
+      setStatus("idle");
+      setFeedback(null);
 
-      const message = document.getElementById(
-        "message",
-      ) as HTMLTextAreaElement | null;
-      if (message && intent.detail) {
-        const current = message.value.trim();
-        if (!current || current.startsWith(interestPrefix)) {
-          message.value = `${interestPrefix} ${intent.detail}`;
-        }
+      if (intent.detail) {
+        setMessage((current) => {
+          const trimmed = current.trim();
+          if (!trimmed || trimmed.startsWith(interestPrefix)) {
+            return `${interestPrefix} ${intent.detail}`;
+          }
+          return current;
+        });
       }
 
-      const select = document.getElementById("service") as HTMLSelectElement | null;
-      select?.classList.add("ring-2", "ring-accent/60");
       window.setTimeout(() => {
-        select?.classList.remove("ring-2", "ring-accent/60");
-      }, 1600);
+        const select = document.getElementById(
+          "service",
+        ) as HTMLSelectElement | null;
+        select?.classList.add("ring-2", "ring-accent/60");
+        window.setTimeout(() => {
+          select?.classList.remove("ring-2", "ring-accent/60");
+        }, 1600);
+      }, 0);
     };
 
     applyIntent();
@@ -69,43 +82,48 @@ export function Contact() {
     };
   }, [locale]);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!social.email) return;
+    if (status === "sending") return;
 
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get("name") ?? "").trim();
-    const email = String(form.get("email") ?? "").trim();
-    const message = String(form.get("message") ?? "").trim();
-    const selectedService = String(form.get("service") ?? "").trim();
-    const serviceTitle =
-      selectedService && isServiceInquiryId(selectedService)
-        ? getServiceInquiryTitle(selectedService, locale)
-        : null;
+    setStatus("sending");
+    setFeedback(null);
 
-    const subject = encodeURIComponent(
-      serviceTitle
-        ? `${dictionary.contact.inquirySubjectPrefix} — ${serviceTitle}`
-        : name
-          ? `Portfolio contact from ${name}`
-          : "Portfolio contact",
-    );
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          service: serviceId,
+          message,
+          website: honeypot,
+        }),
+      });
 
-    const body = encodeURIComponent(
-      [
-        serviceTitle
-          ? `${dictionary.contact.inquiryServiceLabel}:\n${serviceTitle}`
-          : null,
-        name ? `${dictionary.contact.inquiryNameLabel}:\n${name}` : null,
-        email ? `${dictionary.contact.inquiryEmailLabel}:\n${email}` : null,
-        message ? `${dictionary.contact.inquiryMessageLabel}:\n${message}` : null,
-      ]
-        .filter(Boolean)
-        .join("\n\n"),
-    );
+      const payload = (await response.json().catch(() => null)) as {
+        ok?: boolean;
+      } | null;
 
-    clearContactServiceIntent();
-    window.location.href = `mailto:${social.email}?subject=${subject}&body=${body}`;
+      if (!response.ok || !payload?.ok) {
+        setStatus("error");
+        setFeedback(dictionary.contact.submitError);
+        return;
+      }
+
+      clearContactServiceIntent();
+      setName("");
+      setEmail("");
+      setMessage("");
+      setServiceId("");
+      setHoneypot("");
+      setStatus("success");
+      setFeedback(dictionary.contact.submitSuccess);
+    } catch {
+      setStatus("error");
+      setFeedback(dictionary.contact.submitError);
+    }
   };
 
   const methods = [
@@ -128,6 +146,8 @@ export function Contact() {
       href: social.linkedin ?? undefined,
     },
   ].filter((method) => Boolean(method.value));
+
+  const isSending = status === "sending";
 
   return (
     <section id="contact" className="section-pad" aria-labelledby="contact-heading">
@@ -172,7 +192,7 @@ export function Contact() {
           <FadeIn delay={0.1}>
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-border bg-surface/80 p-6 shadow-card backdrop-blur-md sm:p-7"
+              className="relative rounded-2xl border border-border bg-surface/80 p-6 shadow-card backdrop-blur-md sm:p-7"
               noValidate
             >
               <div className="grid gap-5">
@@ -186,7 +206,9 @@ export function Contact() {
                   <select
                     id="service"
                     name="service"
+                    required
                     value={serviceId}
+                    disabled={isSending}
                     onChange={(event) =>
                       setServiceId(
                         isServiceInquiryId(event.target.value)
@@ -213,6 +235,9 @@ export function Contact() {
                   type="text"
                   autoComplete="name"
                   required
+                  disabled={isSending}
+                  value={name}
+                  onChange={setName}
                   placeholder={dictionary.contact.namePlaceholder}
                 />
                 <Field
@@ -222,6 +247,9 @@ export function Contact() {
                   type="email"
                   autoComplete="email"
                   required
+                  disabled={isSending}
+                  value={email}
+                  onChange={setEmail}
                   placeholder={dictionary.contact.emailPlaceholder}
                 />
                 <div>
@@ -236,14 +264,55 @@ export function Contact() {
                     name="message"
                     required
                     rows={5}
+                    disabled={isSending}
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
                     placeholder={dictionary.contact.messagePlaceholder}
                     className="field-input min-h-[140px] resize-y"
                   />
                 </div>
 
+                {/* Honeypot — hidden from real users */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+                >
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(event) => setHoneypot(event.target.value)}
+                  />
+                </div>
+
+                {feedback ? (
+                  <p
+                    role="status"
+                    aria-live="polite"
+                    className={cn(
+                      "rounded-xl border px-4 py-3 text-sm leading-relaxed",
+                      status === "success"
+                        ? "border-accent/30 bg-accent/10 text-foreground"
+                        : "border-border bg-surface-elevated text-muted",
+                    )}
+                  >
+                    {feedback}
+                  </p>
+                ) : null}
+
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <Button type="submit" leftIcon={<Send className="h-4 w-4" />}>
-                    {dictionary.contact.sendMessage}
+                  <Button
+                    type="submit"
+                    disabled={isSending}
+                    leftIcon={<Send className="h-4 w-4" />}
+                  >
+                    {isSending
+                      ? dictionary.contact.sending
+                      : dictionary.contact.sendMessage}
                   </Button>
                   <p className="text-xs text-muted">
                     {dictionary.contact.preferEmail}{" "}
@@ -329,6 +398,9 @@ function Field({
   placeholder,
   required,
   autoComplete,
+  value,
+  onChange,
+  disabled,
 }: {
   id: string;
   name: string;
@@ -337,6 +409,9 @@ function Field({
   placeholder: string;
   required?: boolean;
   autoComplete?: string;
+  value: string;
+  onChange: (value: string) => void;
+  disabled?: boolean;
 }) {
   return (
     <div>
@@ -350,6 +425,9 @@ function Field({
         required={required}
         autoComplete={autoComplete}
         placeholder={placeholder}
+        value={value}
+        disabled={disabled}
+        onChange={(event) => onChange(event.target.value)}
         className="field-input"
       />
     </div>

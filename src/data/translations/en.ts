@@ -163,7 +163,12 @@ export const en: Dictionary = {
     emailPlaceholder: "you@example.com",
     message: "Message",
     messagePlaceholder: "Tell me about your project or idea...",
-    sendMessage: "Email Me",
+    sendMessage: "Send Message",
+    sending: "Sending...",
+    submitSuccess:
+      "Message sent successfully. I'll get back to you as soon as possible.",
+    submitError:
+      "Something went wrong. Please try again or email me directly.",
     formNotConnectedPrefix: "Form delivery is not connected yet. Please email",
     preferEmail: "Prefer email?",
     sendEmailTo: "Send email to",

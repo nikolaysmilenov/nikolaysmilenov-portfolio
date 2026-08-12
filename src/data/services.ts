@@ -10,7 +10,7 @@ export type ServiceCategoryId =
 
 export type Service = {
   id: string;
-  /** Value used in the Contact form select / mailto */
+  /** Value used in the Contact form select / API inquiry */
   inquiryId: string;
   category: ServiceCategoryId;
   title: LocalizedString;
@@ -31,7 +31,7 @@ export type ServiceCategory = {
   services: Service[];
 };
 
-/** Contact form / mailto inquiry options (includes cross-cutting choices). */
+/** Contact form / inquiry options (includes cross-cutting choices). */
 export const serviceInquiryOptions = [
   { id: "landing-page", title: { en: "Landing Page", bg: "Landing страница" } },
   { id: "starter-website", title: { en: "Starter Website", bg: "Стартов уебсайт" } },
