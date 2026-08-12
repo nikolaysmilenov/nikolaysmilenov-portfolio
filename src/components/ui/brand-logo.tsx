@@ -9,8 +9,8 @@ type BrandLogoProps = {
 };
 
 /**
- * Clear premium NS monogram.
- * Distinct geometric N + conventional S, with breathing room between letters.
+ * Geometric NS monogram — interlocking N + S as SVG geometry (not a font).
+ * N uses bar construction; S is a constant-weight ribbon weaving the shared spine.
  */
 export function BrandLogo({
   className,
@@ -23,12 +23,12 @@ export function BrandLogo({
   return (
     <span
       className={cn(
-        "relative inline-flex h-9 w-[3.15rem] shrink-0 items-center sm:h-10 sm:w-[3.5rem]",
+        "relative inline-flex h-9 w-9 shrink-0 items-center justify-center sm:h-10 sm:w-10",
         className,
       )}
     >
       <svg
-        viewBox="0 0 60 34"
+        viewBox="0 0 48 48"
         role="img"
         aria-labelledby={titleId}
         className="h-full w-full"
@@ -37,10 +37,10 @@ export function BrandLogo({
         <defs>
           <linearGradient
             id={gradId}
-            x1="1"
-            y1="2"
-            x2="59"
-            y2="32"
+            x1="3"
+            y1="4"
+            x2="45"
+            y2="44"
             gradientUnits="userSpaceOnUse"
           >
             <stop stopColor="#3B82F6" />
@@ -50,14 +50,32 @@ export function BrandLogo({
         </defs>
 
         <g fill={`url(#${gradId})`}>
-          {/* N */}
-          <rect x="1.5" y="3" width="3.6" height="28" rx="0.45" />
-          <rect x="14.4" y="3" width="3.6" height="28" rx="0.45" />
-          <path d="M5.1 3h3.4L18 24.4V31h-3.4L5.1 9.6V3Z" />
+          {/* N — left stem */}
+          <rect x="3.2" y="4.5" width="5.5" height="39" rx="0.65" />
 
-          {/* S — conventional letter, shifted right for clear separation */}
-          <path d="M43.5 3c-6.6 0-11 3-11 7.3 0 4.5 3.8 6.3 9.8 7.4 4.4.8 6.3 2 6.3 4.1 0 2.5-2.3 4.1-6.3 4.1-3.2 0-5.7-1.1-7.4-2.9l-3.2 3.6c2.6 2.4 6.3 3.7 10.8 3.7 7.3 0 11.9-3.6 11.9-8.4 0-4.7-3.8-6.7-9.9-7.8-4.3-.8-6.2-1.8-6.2-3.9 0-2.2 2.1-3.6 5.6-3.6 2.7 0 4.9.9 6.4 2.4l2.9-3.5C50.9 4.3 47.6 3 43.5 3Z" />
+          {/* N — diagonal into shared spine */}
+          <path d="M8.7 4.5h6.3L27.2 43.5h-6.5L8.7 12.6V4.5Z" />
+
+          {/* Shared spine = N right stem + S weave anchor */}
+          <rect x="20.7" y="4.5" width="5.5" height="39" rx="0.65" />
         </g>
+
+        {/* S ribbon — open terminals; mid weaves through the N counter/spine */}
+        <path
+          d="M40.2 9.6
+             C40.2 6.2 36.6 4.8 31.6 4.8
+             H25.4
+             C20.2 4.8 19.6 9.4 19.6 12
+             C19.6 17.2 27.8 18.6 33.4 20
+             C40 21.8 43.4 25.8 43.4 32.2
+             C43.4 39.4 36.8 43.4 27.4 43.4
+             H14.8"
+          fill="none"
+          stroke={`url(#${gradId})`}
+          strokeWidth="5.5"
+          strokeLinecap="butt"
+          strokeLinejoin="round"
+        />
       </svg>
     </span>
   );

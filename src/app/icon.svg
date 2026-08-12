@@ -1,5 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <rect width="64" height="64" rx="14" fill="#0B1020"/>
   <rect x="1.5" y="1.5" width="61" height="61" rx="12.5" stroke="#7C9CFF" stroke-opacity="0.35"/>
-  <text x="32" y="40" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#7C9CFF">NS</text>
+  <defs>
+    <linearGradient id="ns" x1="11" y1="12" x2="53" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="0.5" stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8 8)">
+    <g fill="url(#ns)">
+      <rect x="3.2" y="4.5" width="5.5" height="39" rx="0.65"/>
+      <path d="M8.7 4.5h6.3L27.2 43.5h-6.5L8.7 12.6V4.5Z"/>
+      <rect x="20.7" y="4.5" width="5.5" height="39" rx="0.65"/>
+    </g>
+    <path d="M40.2 9.6 C40.2 6.2 36.6 4.8 31.6 4.8 H25.4 C20.2 4.8 19.6 9.4 19.6 12 C19.6 17.2 27.8 18.6 33.4 20 C40 21.8 43.4 25.8 43.4 32.2 C43.4 39.4 36.8 43.4 27.4 43.4 H14.8" fill="none" stroke="url(#ns)" stroke-width="5.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  </g>
 </svg>
