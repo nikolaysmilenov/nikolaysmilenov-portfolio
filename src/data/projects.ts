@@ -13,7 +13,10 @@ export type Project = {
   technologies: string[];
   previewImage: string;
   liveUrl?: string;
+  /** Only set when the repository is publicly accessible */
   githubUrl?: string;
+  /** Source exists but is not publicly available */
+  sourcePrivate?: boolean;
   status: ProjectStatus;
   statusLabel: LocalizedString;
   private?: boolean;
@@ -100,7 +103,8 @@ export const projects: Project[] = [
     ],
     previewImage: "/projects/satovcha.png",
     liveUrl: "https://satovcha.info",
-    githubUrl: "https://github.com/satovchainfo-debug/satovcha-info",
+    // Verified: github.com/satovchainfo-debug/satovcha-info exists but is private.
+    sourcePrivate: true,
     status: "live",
     statusLabel: {
       en: "Live Project",
@@ -180,7 +184,8 @@ export const projects: Project[] = [
     ],
     previewImage: "/projects/promoguru.png",
     liveUrl: "https://promoguru.bg",
-    githubUrl: "https://github.com/promogurubg-netizen/promo-guru-bg",
+    // Verified: origin is github.com/promogurubg-netizen/promo-guru-bg but not publicly accessible.
+    sourcePrivate: true,
     status: "live",
     statusLabel: {
       en: "Live Project",

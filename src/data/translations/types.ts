@@ -55,6 +55,7 @@ export type Dictionary = {
     viewCode: string;
     liveWebsite: string;
     privateProject: string;
+    sourceNotPublic: string;
     projectPreview: string;
     technologies: string;
     caseStudy: string;

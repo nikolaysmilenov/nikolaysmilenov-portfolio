@@ -60,6 +60,7 @@ export const en: Dictionary = {
     viewCode: "View Code",
     liveWebsite: "Live Website",
     privateProject: "Private Project",
+    sourceNotPublic: "Source Not Public",
     projectPreview: "Project Preview",
     technologies: "Technologies",
     caseStudy: "Case study",

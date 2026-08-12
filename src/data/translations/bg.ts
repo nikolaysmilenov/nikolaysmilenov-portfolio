@@ -60,6 +60,7 @@ export const bg: Dictionary = {
     viewCode: "Виж кода",
     liveWebsite: "Към сайта",
     privateProject: "Частен проект",
+    sourceNotPublic: "Кодът не е публичен",
     projectPreview: "Преглед на проекта",
     technologies: "Технологии",
     caseStudy: "Казус",

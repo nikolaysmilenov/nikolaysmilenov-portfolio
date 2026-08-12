@@ -116,9 +116,18 @@ export function ProjectCard({ project, index = 0, onOpen }: ProjectCardProps) {
             >
               {dictionary.projects.viewCode}
             </Button>
+          ) : project.sourcePrivate ? (
+            <span className="inline-flex h-9 items-center gap-1.5 rounded-xl border border-border px-3.5 text-sm text-muted">
+              <Lock className="h-3.5 w-3.5" aria-hidden />
+              {dictionary.projects.sourceNotPublic}
+            </span>
           ) : null}
           <Button
-            variant={project.liveUrl || project.githubUrl ? "ghost" : "primary"}
+            variant={
+              project.liveUrl || project.githubUrl || project.sourcePrivate
+                ? "ghost"
+                : "primary"
+            }
             size="sm"
             onClick={() => onOpen(project)}
           >

@@ -191,6 +191,11 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
                   >
                     {dictionary.projects.github}
                   </Button>
+                ) : project.sourcePrivate ? (
+                  <span className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm text-muted">
+                    <Lock className="h-3.5 w-3.5" aria-hidden />
+                    {dictionary.projects.sourceNotPublic}
+                  </span>
                 ) : null}
                 {project.private ? (
                   <span className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm text-muted">
